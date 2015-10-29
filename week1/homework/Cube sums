@@ -1,0 +1,24 @@
+#lang racket
+(define (cube-sums? n)
+  (define (sum-cube-iter a b)
+    (cond
+      [(= b n) #f]
+      [(= (+ (* a a a) (* b b b)) n) #t]
+      [else (sum-cube-iter a (+  b 1 ))]))
+  (define (helper a b)
+    (cond
+      [(> a n) #f]
+      [(helper a b) #t]
+      [else (sum-cube-iter (+ a 1)) b]))
+  (helper 1 1))
+
+
+(define (count-cube-sums from to)
+  (if (> from to)
+      0
+      (if (cube-sums? from)
+          (+ 1 (count-cube-sums (+ 1 from) to))
+          (+ 0 (count-cube-sums (+ 1 from) to))
+          )))
+ 
+ 
