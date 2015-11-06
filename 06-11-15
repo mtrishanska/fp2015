@@ -1,0 +1,49 @@
+;(for(int i = 0; i < n; i++)
+;       {result[i] = f(items[i]);} -> map)
+;od pogolemo uslovie da dobiem po-malko->filter
+;> (filter even? (range 1 5))
+;> (drop-while even? (range 2 5))
+;reduce [a1, a2, . . . an], linarna operaciq-(op) , z-nacalen element->vrsta z(op) a1 (op) a2.. . (op)an;vrshta kakvo shte vqrne operacijata tava vrshta reduce
+;vgraden reduce->foldr, foldr-r za desno(right)
+(define (filter p xs)
+  (cond
+    [(empty? xs) (list)]
+    [(p (first xs)) (cons (first xs) (filter p (rest xs)))]
+    [else (filter p (rest xs))]))
+;(+ 1 (+ 2(+ 3 0))
+(define (reduce op z xs)
+  (cond
+    [(empty? xs) z]
+    [else (op (first xs) (reduce op z (rest xs)))]))
+;foldl(+ 3(+ 2 (+ 0 1))pravi rekursija
+(define (foldl op z xs)
+  (cond
+    [(empty? xs) z]
+    [else (reduce op (op z (first xs)) (rest xs))]))
+
+(define (sum ns)
+  (reduce + 0 ns))
+
+(define (product ns)
+  (reduce * 1 ns))
+
+(define (concat words)
+  (reduce string-append "" words));""-znachalen element
+
+;(~a)-vzima kakvoto i da e i go vrshta v string
+(define (join str )
+  (cond
+    [
+
+(define (reject f l))
+
+(define (all? f l))
+
+(define (any? f l))
+
+(define (count el l))-(equal?)
+
+(define (zip l l))
+;(zip (0 1) ( "Racket" "Haskell")->(( 0 "Racket") (1 "Haskell"))
+
+(define (group l))
