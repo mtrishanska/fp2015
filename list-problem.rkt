@@ -47,10 +47,12 @@
   (helper '() items))
 
 (define (take2 n items)
+ (define (help i xs)
   (cond
-    [(empty? items) (list)]
+    [(empty? xs) (list)]
     [(= n 0) (list)]
-    [else (cons (first items) (take2 (- n 1) (rest items)))]))
+    [else (cons (first xs) (take2 (+ i 1) (rest xs)))]))
+  (help 0 items))
 
 (define (drop2 n items)
   (cond
@@ -65,7 +67,7 @@
             [else (helper (rest xs)(cons (first xs) res))]))
   (helper items(list)))
 
-(define (drop-while1 p items)
+(define (drop-while p items)
   (define (helper xs i)
     (cond
       [(not (p (first xs))) (drop2 i items)]
