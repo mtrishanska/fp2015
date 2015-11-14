@@ -86,10 +86,4 @@
       [else (helper (rest lst) (+ (* res 10) (first lst)))]))
   (helper xs 0))
   
-(define (group xs)
-  (define (helper i res)
-    (cond
-      [(empty? xs) res]
-      [else (drop-while (equal? i (rest xs)) (cons (first xs) res))]))
-  (helper 0 (list)))
 
